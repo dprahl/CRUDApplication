@@ -18,22 +18,22 @@ public class PersonController {
         this.people = people;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/person/{id}", method = RequestMethod.GET)
     public Person readPerson(@PathVariable Integer id) {
         return this.people.findOne(id);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE)
+    @RequestMapping(value="/person/{id}", method = RequestMethod.DELETE)
     public void deletePerson(@PathVariable Integer id){
         people.delete(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/person/", method = RequestMethod.POST)
     public void createPerson(String name, Integer age){
         people.save(new Person(name, age));
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(value="/person/{id}", method = RequestMethod.PUT)
     public void updatePerson(@PathVariable Integer id, String name, Integer age){
         if(people.exists(id)){
             // if person exists, update with new values
